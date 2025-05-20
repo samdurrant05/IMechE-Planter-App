@@ -10,7 +10,7 @@ class PlantingApp:
         CORS(self.app)
 
         self.current_progress = 0
-        self.target_progress = 100  # fixed target for now
+        self.target_progress = 100
         self.planting_active = False
         self.lock = threading.Lock()
 
@@ -45,7 +45,6 @@ class PlantingApp:
 
     def is_planting(self):
         with self.lock:
-            # Placeholder: you said you'll handle toggling, so just return current state
             return jsonify({"plantingActive": self.planting_active})
 
 if __name__ == '__main__':

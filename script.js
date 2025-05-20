@@ -13,12 +13,10 @@ async function checkIfPlantingActive() {
     const data = await response.json();
 
     if (data.plantingActive) {
-      // Show planting screen if planter is active
       document.getElementById('input-screen').classList.add('hidden');
       document.getElementById('planting-screen').classList.remove('hidden');
       startPollingProgress();
     } else {
-      // Otherwise, show input screen
       document.getElementById('input-screen').classList.remove('hidden');
       document.getElementById('planting-screen').classList.add('hidden');
     }
@@ -101,9 +99,7 @@ function resetToHome() {
   targetProgress = 0;
   updateProgressBar();
 
-  //document.getElementById('planting-title').textContent = "Planting In Progress";
-  //document.getElementById('stop-button').classList.remove('hidden');
-  //document.getElementById('return-home-button').classList.add('hidden');
+
   hideErrorBox();
   clearInlineError();
 }
