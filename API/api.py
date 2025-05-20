@@ -20,11 +20,6 @@ class PlantingApp:
         self.app.add_url_rule('/api/target_progress', 'target_progress', self.get_progress, methods=['GET'])
         self.app.add_url_rule('/api/is_planting', 'is_planting', self.is_planting, methods=['GET'])
 
-        # Background thread to simulate progress updates
-        self.progress_thread = threading.Thread(target=self.simulate_progress)
-        self.progress_thread.daemon = True
-        self.progress_thread.start()
-
     def start_planting(self):
         with self.lock:
             self.planting_active = True
@@ -44,7 +39,7 @@ class PlantingApp:
             if not self.planting_active:
                 return jsonify({"message": "No planting in progress"}), 404
             return jsonify({
-                "currentProgress": self.current_progress,
+                "currentProgress": self.current_progress,   #set this to the current progress of files executed - should be returned by movement script
                 "targetProgress": self.target_progress
             })
 
@@ -52,15 +47,6 @@ class PlantingApp:
         with self.lock:
             # Placeholder: you said you'll handle toggling, so just return current state
             return jsonify({"plantingActive": self.planting_active})
-
-    def simulate_progress(self):
-        while True:
-            time.sleep(1)
-            with self.lock:
-                if self.planting_active and self.current_progress < self.target_progress:
-                    self.current_progress += 5
-                    if self.current_progress > self.target_progress:
-                        self.current_progress = self.target_progress
 
 if __name__ == '__main__':
     planting_app = PlantingApp()
