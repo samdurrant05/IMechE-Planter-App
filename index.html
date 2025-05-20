@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Planting Progress</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div id="input-screen" class="centered-container">
+        <h1>Enter Field Parameters</h1>
+
+        <label for="x-dimension">X Dimension (metres):</label>
+        <input type="number" id="x-dimension" required />
+
+        <label for="y-dimension">Y Dimension (metres):</label>
+        <input type="number" id="y-dimension" required />
+
+        <label for="column-separation">Column Separation (cm):</label>
+        <input type="number" id="column-separation" required />
+
+        <label for="seed-spacing">Seed Spacing (cm):</label>
+        <input type="number" id="seed-spacing" required />
+
+        <label class="checkbox-label">
+            <input type="checkbox" id="dispense-water" />
+            Dispense Water?
+        </label>
+
+        <p id="inline-error" class="hidden" style="color: red; margin-top: 10px;"></p>
+
+        <button onclick="startPlanting()">Start Planting</button>
+    </div>
+
+    <div id="planting-screen" class="centered-container hidden">
+        <h1 id="planting-title">Planting In Progress</h1>
+        <div id="field">
+            <div id="loading-bar">
+                <div id="progress">
+                    <img
+                        src="https://img.icons8.com/emoji/24/leaf-fluttering-in-wind.png"
+                        alt="leaf"
+                        id="leaf-icon"
+                    />
+                </div>
+            </div>
+        </div>
+        <button onclick="stopPlanting()">Stop Planting</button>
+    </div>
+
+    <div id="error-message" class="error-message hidden">
+        <h2>Connection Lost</h2>
+        <p>
+            It looks like you've lost connection to the API. Please check your
+            internet connection.
+        </p>
+    </div>
+
+    <div id="connection-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Connection Lost</h2>
+            <p>Unable to contact the planting device. What would you like to do?</p>
+            <button onclick="retryConnection()">Retry</button>
+            <button onclick="returnHome()">Return to Home</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

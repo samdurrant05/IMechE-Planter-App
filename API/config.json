@@ -1,0 +1,5 @@
+{
+    "FLASK_APP_IP": "localhost",  
+    "FLASK_APP_PORT": 5000,         
+    "FLASK_DEBUG": true             
+}
